@@ -1,8 +1,8 @@
 function func(text, entities) {
 	const parts = [];
-	
 	let countOffset = 0;
-	entities.forEach((el) => {
+	
+	entities.forEach((el, index) => {
 		if (el.type === "bold") {
 			parts.push(text.slice(countOffset, el.offset));
 			parts.push(`**${text.slice(el.offset, el.offset + el.length)}**`);
@@ -16,9 +16,15 @@ function func(text, entities) {
 		if (el.type === "text_link") {
 			parts.push(text.slice(countOffset, el.offset));
 			parts.push(`[${text.slice(el.offset, el.offset + el.length)}](${el.url})`);
-			countOffset = el.offset + el.length;
+			countOffset = el.offset + el.length + el.url.length;
 		}
-	});
+		
+		 if (index === entities.length - 1) {
+			parts.push(text.slice(countOffset, text.length));
+		}
+		
+	})
+
 	return parts.join("");
 }
 

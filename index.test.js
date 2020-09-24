@@ -4,13 +4,17 @@ test("example 1", () => {
 	const text = "бла бла бла жир бла бла бла";
 	const entities = [
 		{
-			offset: 12,
+			offset: 0,
 			length: 3,
-			type: "bold",
-		}
-	];
-
-	expect(func(text, entities)).toBe("бла бла бла **жир** бла бла бла");
+			type: "italic",
+		},
+		{
+		offset: 12,
+		length: 3,
+		type: "bold",
+	},
+];
+	expect(func(text, entities)).toBe("__бла__ бла бла **жир** бла бла бла");
 });
 test('example 2', () => {
 	const text = "#дневник тест3 мяу мяу длдлдл ссылка";
