@@ -13,10 +13,10 @@ function applyEntities(text, entities) {
 	let currentOffset = 0;
 	
 	for (const entity of entities) {
-		parts.push(text.slice(currentOffset, entity.offset));
-		
 		const formatter = formaters[entity.type];
 		if (formatter === undefined) continue;
+		
+		parts.push(text.slice(currentOffset, entity.offset));
 		
 		const fragment = text.slice(entity.offset, entity.offset + entity.length);
 		const formatted = formatter(fragment, entity);
@@ -28,7 +28,7 @@ function applyEntities(text, entities) {
 	if (currentOffset !== text.length){
 		parts.push(text.slice(currentOffset, text.length));
 	}
-	
+	console.log(parts);
 	return parts.join("");
 }
 

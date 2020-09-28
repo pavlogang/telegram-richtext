@@ -88,3 +88,20 @@ test("example 4", () => {
  ];
 	expect(func(text, entities)).toBe("бла бла бла [ссылка](https://google.com/) ++подчёркнутый++ `моноширинный` ~~зачёркнутый~~");
 });
+
+test("example 5", () => {
+const text = "я жирный #дневник";
+	const entities = [
+		{
+			offset: 2,
+			length: 3,
+			type: "bold",
+		},
+		{
+			offset: 9,
+			length: 8,
+			type: "hashtag",
+		},
+	];
+	expect(func(text, entities)).toBe("я **жир**ный #дневник");
+});
